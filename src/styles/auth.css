@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', san-serif
+}
+
+.form-title {
+    margin-top: 60px;
+    font-size: 40px;
+    font-weight: 500;
+    font-family: 'Roboto', san-serif
+}
+
+.submit-button {
+    margin-top: 20px;
+    margin-bottom: 10px
+}
+
+.input-group {
+    margin-bottom: 10px
+}
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+  }
+
+  .form-signin, .form-login{
+    width: 397px
+  }
