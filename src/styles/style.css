@@ -123,18 +123,19 @@ body {
 
   .day-nav {
     display:flex;
+    flex-wrap: wrap;
+    padding-bottom: 140px
+  }
 
+  .day-nav button, .day-nav .pagination-dates{
+        margin-top:20px
   }
 
   .main-title {
-    margin-bottom:60px;
+    margin-bottom:40px;
     font-size: 40px;
     font-weight: 500;
     line-height: 100%;
-  }
-
-  .day-nav {
-    padding-bottom: 140px
   }
 
   .pagination-dates .btn-link {
@@ -190,6 +191,7 @@ body {
         border-radius: 12px!important;
         margin-bottom: 20px;
         height: 120px!important;
+        min-width: 300px;
     }
 
     .card-fin .card-title{
@@ -231,10 +233,6 @@ body {
     border: none
 }
 
-#modalDelete .modal-content {
-    padding:40px; 
-    width:532px
-}
 
 #modalDelete .modal-body {
     padding:0 0 20px 0;
@@ -278,3 +276,79 @@ body {
 #income-expence-create-form .mb-3 {
     margin-bottom: 20px!important;
 }
+
+/*adaptive*/
+
+@media screen and (max-width: 1415px) {
+    #main .divider-container {
+        display:none!important
+    }
+}
+
+@media (max-width: 767.9px) {
+    .toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: #f8f9fa;
+      z-index: 1040;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+  
+    .toolbar.show {
+      transform: translateX(0);
+    }
+  }
+
+  #sidebarClose {
+    position: absolute;
+    top: 15px;
+    left:200px
+  }
+
+  @media screen and (max-width: 1000px) {
+  .content-container {
+    padding: 90px 20px 
+  }
+  .day-nav {
+    padding-bottom:60px
+  }
+
+  .card-body {
+    margin-bottom:40px
+  }
+
+  #incomes-expenced-dashboard th, td, th {
+    font-size:12px;
+    padding:3px!important
+}
+}
+
+@media screen and (max-width: 767px) {
+  .chart-container .card-body {
+    max-width: 340px;
+    max-height: 340px;
+  }
+}
+
+@media screen and (min-width: 554px) {
+#modalDelete .modal-content {
+    padding:40px; 
+    width:532px
+}
+}
+
+  @media screen and (max-width: 555px) {
+    #modalDelete .modal-content {
+      padding: 20px !important;
+      width: 80% !important;
+      margin: auto;
+    }
+    #modalDelete .modal-content .modal-title {
+        font-size:14px
+    }
+
+  }

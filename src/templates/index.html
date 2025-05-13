@@ -13,8 +13,12 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <body>
     <div class="main-container d-flex"> 
+        <button class="btn btn-outline-secondary d-md-none" style="position:absolute; top:15px; left:10px" id="sidebarToggle">
+            ☰ Меню
+        </button>
         <div class="d-flex flex-column flex-shrink-0 bg-light toolbar">
             <div>
+                <button class="btn btn-close d-md-none ms-auto m-2" id="sidebarClose"></button>
                 <a href="/" class="text-center">
                     <img class="logo" src="../static/Logo.png" width="98">
                 </a>
@@ -68,42 +72,42 @@
                     <li><a class="dropdown-item" href="/logout">Logout </a></li>
                 </ul>
             </div>
-        </div>
-    </div>
-    <div class="content-container" id="main">
-        <h1 class="main-title" id="main-title">Главная</h1>
-        <div class="day-nav d-flex align-items-center">
-            <btn class="btn btn-outline-secondary btn-pagination me-3" id="today"> Сегодня</btn>
-            <btn class="btn btn-outline-secondary btn-pagination me-3" id="week"> Неделя</btn>
-            <btn class="btn btn-outline-secondary btn-pagination me-3" id="month"> Месяц</btn>
-            <btn class="btn btn-outline-secondary btn-pagination me-3" id="year"> Год</btn>
-            <btn class="btn btn-outline-secondary btn-pagination me-3" id="all"> Все</btn>
-            <btn class="btn btn-outline-secondary btn-pagination me-3" id="interval"> Интервал</btn>
-            <div class="pagination-dates d-flex align-items-center">
-                С <btn class="btn btn-link" id="start-date-pagination"> Дата</btn> по <btn class="btn btn-link" id="finish-date-pagination"> Дата</btn>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-auto">
-                <div class="chart-container">
-                    <div class="card-body">
-                        <canvas id="incomeChart"></canvas>
+        <div class="content-container" id="main">
+            <h1 class="main-title" id="main-title">Главная</h1>
+            <div class="day-nav d-flex align-items-center">
+                <button class="btn btn-outline-secondary btn-pagination me-3" id="today"> Сегодня</button>
+                <button class="btn btn-outline-secondary btn-pagination me-3" id="week"> Неделя</button>
+                <button class="btn btn-outline-secondary btn-pagination me-3" id="month"> Месяц</button>
+                <button class="btn btn-outline-secondary btn-pagination me-3" id="year"> Год</button>
+                <button class="btn btn-outline-secondary btn-pagination me-3" id="all"> Все</button>
+                <button class="btn btn-outline-secondary btn-pagination me-3" id="interval"> Интервал</button>
+                <div class="pagination-dates d-flex align-items-center">
+                    С <btn class="btn btn-link" id="start-date-pagination"> Дата</btn> по <btn class="btn btn-link" id="finish-date-pagination"> Дата</btn>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <div class="chart-container">
+                        <div class="card-body">
+                            <canvas id="incomeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto d-flex align-items-center divider-container">
+                    <div class="divider m-5"></div>
+                </div>
+                <div class="col-auto">
+                    <div class="chart-container">
+                        <div class="card-body">
+                            <canvas id="outcomeChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-auto d-flex align-items-center">
-                <div class="divider m-5"></div>
-                </div>
-            <div class="col-auto">
-                <div class="chart-container">
-                    <div class="card-body">
-                        <canvas id="outcomeChart"></canvas>
-                    </div>
-                </div>
-            </div>
+        
         </div>
-    
-    </div>
     </div>
 
       <script>
@@ -124,7 +128,7 @@
               legend: {
                 position: 'top',
                 labels: {
-                    boxWidth: 25,  
+                    boxWidth: 20,  
                     padding: 15,
                     font: {
                         size: 14
@@ -148,7 +152,7 @@
             new Chart(och, {
             type: 'pie',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Orange'],
+                labels: ['Еда', 'Жилье', 'Здоровье', 'Машина', 'Orange'],
                 datasets: [{
                 label: 'Colors Distribution',
                 data: [10, 20, 30, 20, 10],
@@ -161,7 +165,7 @@
                 legend: {
                     position: 'top',
                     labels: {
-                        boxWidth: 25,  
+                        boxWidth: 20,  
                         padding: 15,
                         font: {
                             size: 14
@@ -180,5 +184,21 @@
             }
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const toggleBtn = document.getElementById('sidebarToggle');
+          const toolbar = document.querySelector('.toolbar');
+      
+          toggleBtn.addEventListener('click', function () {
+            toolbar.classList.toggle('show');
+          });
+
+        const closeBtn = document.getElementById('sidebarClose');
+        closeBtn.addEventListener('click', function () {
+        toolbar.classList.remove('show');
+
+        });
+    })
+      </script>
 </body>
 </html>

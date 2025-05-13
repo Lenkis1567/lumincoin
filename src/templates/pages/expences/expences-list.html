@@ -15,6 +15,9 @@
 
 <body>
     <div class="main-container d-flex"> 
+        <button class="btn btn-outline-secondary d-md-none" style="position:absolute; top:15px; left:10px" id="sidebarToggle">
+            ☰ Меню
+        </button>
         <div class="modal fade" id="modalDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -30,6 +33,7 @@
           </div>
         <div class="d-flex flex-column flex-shrink-0 bg-light toolbar">
             <div>
+                <button class="btn btn-close d-md-none ms-auto m-2" id="sidebarClose"></button>
                 <a href="/" class="text-center">
                     <img class="logo" src="../../../static/Logo.png" width="98">
                 </a>
@@ -156,8 +160,23 @@
                 </div> 
             </div>
         </div>
-
     </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const toggleBtn = document.getElementById('sidebarToggle');
+          const toolbar = document.querySelector('.toolbar');
+      
+          toggleBtn.addEventListener('click', function () {
+            toolbar.classList.toggle('show');
+            });
+    
+        const closeBtn = document.getElementById('sidebarClose');
+        closeBtn.addEventListener('click', function () {
+        toolbar.classList.remove('show');
+    
+            });
+        })
+      </script>
 </body>
 </html>
