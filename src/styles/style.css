@@ -268,9 +268,10 @@ body {
     background-color:transparent
 }
 
-#income-expence-create-form input {
+#income-expence-create-form input,
+#income-expence-create-form select {
     max-width: 397px;
-    padding: 7px 16px
+    padding: 7px 16px;
 }
 
 #income-expence-create-form .mb-3 {
