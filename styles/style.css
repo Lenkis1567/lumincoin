@@ -11,14 +11,19 @@ body {
     min-height:600px
 }
 .toolbar {
+  position:fixed;
+  height:100%;
     width: 219px;
-    padding: 40px 20px;
+    padding: 40px 0;
     font-size: 14px;
     border-right: 1px solid #D9D9D9;
     justify-content: space-between;
     flex-grow: 1
 }
 
+.toolbar-upper {
+  text-align: center;
+}
 
 .bd-placeholder-img {
   font-size: 1.125rem;
@@ -71,9 +76,13 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+.nav-pills {
+  text-align: start;
+}
+
 .content-container {
-    padding: 100px 94px 173px 84px;
-    width:100%
+    padding: 100px 94px 173px 279px;
+    width:100%;
 }
 
 .toolbar .nav-link {
@@ -83,6 +92,14 @@ body {
     font-size: 14px
 }
 
+.nav-item {
+  margin: 0px 20px 10px 20px;
+  border-radius: 5px
+}
+
+.nav-item.item-first {
+  margin: 60px 20px 10px 20px
+}
 
 .toolbar .nav-link .btn {
     font-size: 14px
@@ -127,9 +144,6 @@ body {
     padding-bottom: 140px
   }
 
-  .day-nav button, .day-nav .pagination-dates{
-        margin-top:20px
-  }
 
   .main-title {
     margin-bottom:40px;
@@ -155,11 +169,14 @@ body {
         top: 80px;
     }
     
-    .btn.btn-dropdown:hover {
+    .nav-item:hover {
         background-color: #0D6EFD;
         color: white; 
     }
 
+    .nav-item:hover > a {
+    color: white!important;
+}
 
     li .dropdown-menu {
         padding: 0;
@@ -172,14 +189,29 @@ body {
         color: white; 
     }
 
+
+    .nav-item.dropdown.show svg {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
+}
+
+  .nav-item.dropdown svg {
+    transition: transform 0.3s ease;
+  }
+
+
     .toolbar-balance {
-        margin-bottom: 20px
+        margin-bottom: 20px;
+        padding: 0 20px
     }
 
-    .toolbar-balance span {
-        color: #0D6EFD
-    }
+  .toolbar-balance span {
+      color: #0D6EFD
+  }
 
+  .toolbar-dropdown {
+            padding: 0 20px
+  }
     .dropdown-toggle::after {
         content: none!important
     }
@@ -204,6 +236,8 @@ body {
     .cards-container {
         flex-wrap: wrap;
     }
+
+
 @media screen and (max-width: 360px) {
     .card-fin {
         max-width: 352px;
@@ -312,11 +346,12 @@ body {
 
   @media screen and (max-width: 1000px) {
   .content-container {
-    padding: 90px 20px 
+    padding: 90px 20px 90px 240px 
   }
   .day-nav {
     padding-bottom:60px
   }
+
 
   .card-body {
     margin-bottom:40px
@@ -333,12 +368,16 @@ body {
     max-width: 340px;
     max-height: 340px;
   }
+
+   .content-container {
+    padding: 90px 20px 90px 20px 
+  }
 }
 
 @media screen and (min-width: 554px) {
 #modalDelete .modal-content {
     padding:40px; 
-    width:532px
+    width:532px!important
 }
 }
 
