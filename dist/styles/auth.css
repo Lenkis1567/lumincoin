@@ -30,8 +30,3 @@ body {
   .form-signin, .form-login{
     width: 397px
   }
-
-  #common-error {
-    display: none;
-    color:red
-  }

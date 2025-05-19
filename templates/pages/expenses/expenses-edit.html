@@ -1,0 +1,32 @@
+
+  <div class="main-container d-flex"> 
+    <div class="content-container" id="expenses-category-edit">
+        <h1 class="main-title" id="main-title">Редактирование категории расходов</h1>
+        <div class="category-create-form expenses-category-create-form">
+          <input type="text" id = "expenses-category-name" class="form-control" placeholder="Название" aria-label="Название">
+        </div>
+        <div id="expenses-category-nameFeedback" class="invalid-feedback text-start">
+            Заполните название
+        </div>
+        <div class="expenses-category-create-buttons">
+          <button class="btn btn-success me-2" id="expenses-category-edit-button">Сохранить</button>
+          <a href="/expenses-list" class="btn btn-danger">Отмена</a>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.getElementById('sidebarToggle');
+      const toolbar = document.querySelector('.toolbar');
+  
+      toggleBtn.addEventListener('click', function () {
+        toolbar.classList.toggle('show');
+        });
+
+    const closeBtn = document.getElementById('sidebarClose');
+    closeBtn.addEventListener('click', function () {
+    toolbar.classList.remove('show');
+
+        });
+    })
+  </script>

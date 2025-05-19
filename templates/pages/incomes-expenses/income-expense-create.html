@@ -1,0 +1,48 @@
+
+    <div class="content-container" id="income-expence-create">
+        <h1 class="main-title" id="main-title">Создание дохода/расхода</h1>
+        <form id="income-expence-create-form" novalidate>
+          <div class="mb-2">
+            <select class="form-control" name="type" required>
+              <option value="" disabled selected>Тип...</option>
+              <option value="доход">Доход</option>
+              <option value="расход">Расход</option>
+            </select>
+            <div id="income-expence-typeFeedback" class="invalid-feedback text-start">
+              Заполните тип (доход или расход)
+            </div>
+          </div>
+          <div class="mb-2">
+            <select class="form-control" name="category" required>
+              <option value="" disabled selected>Категория...</option>
+              <option value="еда">Еда</option>
+              <option value="машина">Машина</option>
+              <option value="здоровье">Здоровье</option>
+            </select>
+            <div id="income-expence-categoryFeedback" class="invalid-feedback text-start">
+              Заполните категорию
+            </div>
+          </div>
+          <div class="mb-2">
+            <input type="number" step="0.01" class="form-control is-invalid" name="amount" placeholder="Сумма в $..." required>
+            <div id="income-expence-amountFeedback" class="invalid-feedback text-start">
+              Укажите сумму
+            </div>
+          </div>
+          <div class="mb-2">
+            <input type="text" class="form-control" name="date" placeholder="Дата..." required>
+              <div id="income-expence-dateFeedback" class="invalid-feedback text-start">
+                Укажите дату
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" name="comment" placeholder="Комментарий...">
+            </div>
+            <div class="d-flex justify-content-start gap-2">
+              <button type="submit" class="btn btn-success" id="income-expence-create-button">Создать</button>
+              <a href="./incomes-expenses-list" class="btn btn-danger">Отмена</a>
+            </div>
+          </form>
+        </div>
+    </div>
+

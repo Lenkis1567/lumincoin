@@ -1,0 +1,106 @@
+
+
+    <div class="main-container d-flex"> 
+        <div class="modal fade" id="modalDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="modal-title" id="staticBackdropLabel">Вы действительно хотите удалить категорию?</h5>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-success" id="delete-confirm">Да, удалить</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Не удалять</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-container" id="expenses-list">
+            <h1 class="main-title" id="main-title">Расходы</h1>
+            <div class="cards-container d-flex" id="cards-expenses">
+                <div class="card card-fin me-3">
+                    <div class="card-title">
+                        Еда
+                    </div>
+                    <div class="card-buttons">
+                        <a href="expenses-edit" class="btn btn-primary me-2" id="edit" >Редактировать</a>
+                        <button class="btn btn-danger" id="delete" data-bs-toggle="modal" data-bs-target="#modalDelete">Удалить</button>
+                    </div>
+                </div>
+                <div class="card card-fin me-3">
+                    <div class="card-title">
+                        Жилье
+                    </div>
+                    <div class="card-buttons">
+                        <a href="expenses-edit" class="btn btn-primary me-2" id="edit" >Редактировать</a>
+                        <button class="btn btn-danger" id="delete" data-bs-toggle="modal" data-bs-target="#modalDelete">Удалить</button>
+                    </div>
+                </div>
+                <div class="card card-fin me-3">
+                    <div class="card-title ">
+                        Здоровье
+                    </div>
+                    <div class="card-buttons">
+                        <a href="expenses-edit" class="btn btn-primary me-2" id="edit" >Редактировать</a>
+                        <button class="btn btn-danger" id="delete" data-bs-toggle="modal" data-bs-target="#modalDelete">Удалить</button>
+                    </div>
+                </div>
+                <div class="card card-fin me-3">
+                    <div class="card-title">
+                        Кафе
+                    </div>
+                    <div class="card-buttons">
+                        <a href="expenses-edit"class="btn btn-primary me-2" id="edit" >Редактировать</a>
+                        <button class="btn btn-danger" id="delete" data-bs-toggle="modal" data-bs-target="#modalDelete">Удалить</button>
+
+                    </div>
+                </div>
+                <div class="card card-fin me-3">
+                    <div class="card-title">
+                        Авто
+                    </div>
+                    <div class="card-buttons">
+                        <a href="expenses-edit" class="btn btn-primary me-2" id="edit" >Редактировать</a>
+                        <button class="btn btn-danger" id="delete" data-bs-toggle="modal" data-bs-target="#modalDelete">Удалить</button>
+
+                    </div>
+                </div>
+                <div class="card card-fin me-3">
+                    <div class="card-title">
+                        Одежда
+                    </div>
+                    <div class="card-buttons">
+                        <a href="expenses-edit" class="btn btn-primary me-2" id="edit" >Edit</a>
+                        <button class="btn btn-danger" id="delete" data-bs-toggle="modal" data-bs-target="#modalDelete">Delete</button>
+
+                    </div>
+                </div>
+                <a href="expenses-create" id="create-expenses">
+                <div class="card d-flex card-fin me-3 text-center justify-center">
+    
+                    <div class="card-fin-add">
+                        
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.5469 6.08984V9.05664H0.902344V6.08984H14.5469ZM9.32422 0.511719V15.0039H6.13867V0.511719H9.32422Z" fill="#CED4DA"/>
+                            </svg>
+                    </div>   
+                </div>  
+                    </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const toggleBtn = document.getElementById('sidebarToggle');
+          const toolbar = document.querySelector('.toolbar');
+      
+          toggleBtn.addEventListener('click', function () {
+            toolbar.classList.toggle('show');
+            });
+    
+        const closeBtn = document.getElementById('sidebarClose');
+        closeBtn.addEventListener('click', function () {
+        toolbar.classList.remove('show');
+    
+            });
+        })
+      </script>
