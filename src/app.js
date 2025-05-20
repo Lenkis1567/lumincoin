@@ -3,10 +3,11 @@ import { Router } from "./router.js";
 class App {
     constructor() {
         this.router = new Router();
+        
         window.addEventListener('DOMContentLoaded', () => {
             this.handleRouteChanging();
 
-            // Add your toolbar dropdown behavior here
+            // Add your toolbar dropdown behavior 
             document.querySelectorAll('.nav-item.dropdown').forEach(item => {
                 item.addEventListener('show.bs.dropdown', () => {
                     const svg = item.querySelector('svg');

@@ -4,6 +4,10 @@ body {
     font-family: 'Roboto', san-serif
 }
 
+#layout {
+  display: none
+}
+
 .form-title {
     margin-top: 60px;
     font-size: 40px;

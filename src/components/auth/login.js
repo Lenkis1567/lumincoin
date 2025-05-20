@@ -42,7 +42,6 @@ export class Form {
                     password:  this.passwordInputElement.value,
                     rememberMe: this.rememberMeElement.checked
                 });
-                console.log(result.response.user.lastName, 'result user lastName')
 
             if (
                 result.error ||
@@ -63,7 +62,7 @@ export class Form {
                     AuthUtils.setAuthInfo('accessToken', result.response.tokens.accessToken);
                     AuthUtils.setAuthInfo('refreshToken', result.response.tokens.refreshToken);
                     AuthUtils.setAuthInfo('userInfo', result.response.user);
-                    window.location.href = '/index.html'; 
+                    window.location.href = 'index'; 
                 }
 
             }

@@ -3,6 +3,9 @@ import {AuthUtils} from '../../utils/auth-utils.js';
 
 export class SignIn {
     constructor() {
+        if(AuthUtils.getAuthInfo('accessToken')) {
+            return window.location.href='/'
+        }
         this.nameInputElement = document.getElementById('nameInput');
         this.emailInputElement = document.getElementById('mailInput');
         this.passwordInputElement = document.getElementById('passInput');
@@ -45,7 +48,6 @@ export class SignIn {
             this.passwordConfElement.classList.add('is-invalid');
             isValid = false;
         }
-        console.log(isValid)
          return isValid;
     }
 
@@ -62,7 +64,6 @@ export class SignIn {
 
                 }
                 const result = await HttpUtils.request('signup', 'POST', false, body);
-                console.log(result.response.user, 'result response')
 
                 if (
                     result.error ||

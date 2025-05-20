@@ -3,8 +3,6 @@ import {HttpUtils} from '../../utils/http-utils.js';
 export class Logout {
 
     constructor() {
-        console.log('Logout');
-
 
         if(!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) || !AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey)) {
             window.location.href = 'login'; 
@@ -20,7 +18,6 @@ export class Logout {
             });
 
             AuthUtils.removeAuthInfo()
-        
-             window.location.href = 'login'; 
+            window.location.href = 'login'; 
     }
 }

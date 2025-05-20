@@ -1,5 +1,12 @@
+import {AuthUtils} from "../../utils/auth-utils";
+
 export class CreateExpensesCategory {
     constructor() {
-    console.log('expenses create')
+        const authInfo = AuthUtils.getAuthInfo();
+        if (!authInfo.accessToken){
+            window.location.href = 'login'; 
+        } 
+        console.log('expenses create')
+
     }
 }

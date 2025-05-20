@@ -5,6 +5,7 @@ import {SignIn} from "./components/auth/sign-in.js";
 import {Logout} from "./components/auth/logout.js";
 
 
+import {Main} from "./components/main.js";
 import {CreateExpensesCategory} from "./components/expenses/expenses-create.js";
 import {EditExpensesCategory} from "./components/expenses/expenses-edit.js";
 import {ListExpensesCategory} from "./components/expenses/expenses-list.js";
@@ -25,6 +26,7 @@ export class Router {
         this.profileElement = document.getElementById('toolbar-profile');
         this.balanceElement = document.getElementById('toolbar-balance-value');
         this.profileFullNameElement = document.getElementById('toolbar-profile-login');
+        this.layoutElement = document.getElementById('layout');
         this.routes = [
             {
                 route: '/',
@@ -32,7 +34,7 @@ export class Router {
                 template: './templates/index.html',
                 styles: './styles/style.css',
                 layout: true,
-                load: () => {}
+                load: () => new Main()
             },
             {
                 route: '/login',
@@ -144,29 +146,23 @@ export class Router {
         const newRoute = this.routes.find(route => route.route === urlRoute);
         
         if (!newRoute) {
-            // Redirect to root
             history.replaceState(null, '', '/');
             return this.openRoute();
         }
 
         const html = await fetch(newRoute.template).then(res => res.text());
-
-
-
         this.stylesElement.setAttribute('href', newRoute.styles);
         document.title = newRoute.title;
 
         if (newRoute.layout) {
             if (this.titleElement) {
                 this.titleElement.innerText = newRoute.title;
+                this.layoutElement.style.display='flex';
                 this.contentElement.innerHTML = html;
             }
         } else {
-            // Replace whole body
             document.body.innerHTML = html;
         }
-
-
 
         const authInfo = AuthUtils.getAuthInfo();
         let accessToken = authInfo.accessToken;
