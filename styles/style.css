@@ -149,7 +149,10 @@ body {
     padding-bottom: 140px
   }
 
-
+ .day-nav.day-nav-expences-incomes {
+  padding-bottom: 40px
+ }
+ 
   .main-title {
     margin-bottom:40px;
     font-size: 40px;
@@ -397,3 +400,42 @@ body {
     }
 
   }
+
+  .date-wrapper {
+  position: relative;
+}
+
+.date-wrapper label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #999;
+  pointer-events: none;
+  transition: 0.2s;
+}
+
+.date-wrapper input:focus + label,
+.date-wrapper input:valid + label {
+  top: -8px;
+  left: 8px;
+  font-size: 12px;
+  background: white;
+  padding: 0 4px;
+  color: #007bff;
+}
+
+.form-control.form-control-sm.date-input {
+  width: 115px;
+  border: none;
+  border-bottom: 1px solid grey;
+  border-radius: unset;
+}
+
+.pagination-dates .dates-input-container {
+  flex-direction: column;
+}
+
+.date-input-container {
+  flex-direction: row; 
+  align-items: center}
