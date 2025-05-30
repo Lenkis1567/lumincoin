@@ -18,6 +18,7 @@ export class HttpUtils {
 
         if (useAuth){
             accessToken = AuthUtils.getAuthInfo('accessToken');
+            console.log(accessToken, 'accessToken in useauth')
             if (accessToken) {
                 params.headers['x-auth-token'] = accessToken;
             }  
@@ -38,21 +39,20 @@ export class HttpUtils {
         
         if (response.status < 200 || response.status >= 300) {
             result.error = true;
-            if (useAuth && response.status === 401) {
-                if (!accessToken) {
-                    result.redirect = 'login' //no token
+        if (useAuth && response.status === 401) {
+            console.log('useAuth && response.status === 401', accessToken)
+            if (!accessToken) {
+                result.redirect = 'login';
+            } else {
+                const updateTokenResult = await AuthUtils.updateRefreshToken();
+                if (updateTokenResult) {
+                    return this.request(url, method, useAuth, body);
                 } else {
-                 //old token   
-                  const updateTokenResult = await AuthUtils.updateRefreshToken();
-                  if (updateTokenResult)  {
-                    return this.request(url, method, useAuth, body) //fetch again
-                  } else {
-                    AuthUtils.removeAuthInfo()
-                    result.redirect = 'login'
-                  }
-                  
+                    AuthUtils.removeAuthInfo();
+                    result.redirect = 'login';
                 }
-             }
+            }
+        }
         }
         console.log(result, 'result in utils')
         return result
