@@ -199,9 +199,9 @@ body {
 
 
     .nav-item.dropdown.show svg {
-  transform: rotate(90deg);
-  transition: transform 0.3s ease;
-}
+      transform: rotate(90deg);
+      transition: transform 0.3s ease;
+  }
 
   .nav-item.dropdown svg {
     transition: transform 0.3s ease;
@@ -220,7 +220,7 @@ body {
   .toolbar-dropdown {
             padding: 0 20px
   }
-    .dropdown-toggle::after {
+  .dropdown-toggle::after {
         content: none!important
     }
 
@@ -402,8 +402,8 @@ body {
   }
 
   .date-wrapper {
-  position: relative;
-}
+    position: relative;
+  }
 
 .date-wrapper label {
   position: absolute;

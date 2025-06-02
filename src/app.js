@@ -35,29 +35,46 @@ class App {
     })
 
         window.addEventListener('popstate', this.handleRouteChanging.bind(this));
+        
     }
 
+    
     handleRouteChanging() {
         const currentPath = window.location.pathname;
         this.router.openRoute();
         this.highlightActiveNav(currentPath);
     }
 
-    highlightActiveNav(currentPath) {
-        const cleanPath = currentPath.replace(/^\/+/, '');
-        const navLinks = document.querySelectorAll('.toolbar a.nav-link');
+   highlightActiveNav(currentPath) {
+    const cleanPath = currentPath.replace(/^\/+/, '');
+    const navLinks = document.querySelectorAll('.toolbar a.nav-link, .dropdown-menu .dropdown-item');
 
-        navLinks.forEach((link) => {
-            const href = link.getAttribute('href').replace(/^\/+/, '');
-            if (href === cleanPath || (cleanPath === '' && href === 'index')) {
+    navLinks.forEach((link) => {
+        const href = link.getAttribute('href').replace(/^\/+/, '');
+        if (href === cleanPath) {
             link.classList.add('active');
             link.classList.remove('link-dark');
-            } else {
-            link.classList.remove('active');
-            link.classList.add('link-dark');
+
+            // Если это dropdown-item, открыть родительский dropdown
+            const dropdown = link.closest('.dropdown');
+            if (dropdown) {
+                const toggle = dropdown.querySelector('[data-bs-toggle="dropdown"]');
+                const dropdownInstance = bootstrap.Dropdown.getOrCreateInstance(toggle);
+                dropdownInstance.show();
+
+                // Дополнительно вращаем SVG
+                const svg = toggle.querySelector('svg');
+                if (svg) svg.style.transform = 'rotate(90deg)';
             }
-        });
-    }
+
+        } else {
+            link.classList.remove('active');
+            if (link.classList.contains('nav-link')) {
+                link.classList.add('link-dark');
+            }
+        }
+    });
+}
 }
 
 (new App());
