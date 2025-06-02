@@ -10,7 +10,6 @@ export class CreateIncomesCategory {
         this.incomeCategory = '';
 
         this.createCategoryButton = document.getElementById('incomes-category-create-button');
-        console.log(this.createCategoryButton)
         this.createCategoryInputElement = document.getElementById('incomes-category-name')
         this.createCategoryButton.addEventListener('click', this.createIncomeCategory.bind(this));
     }
@@ -24,12 +23,11 @@ export class CreateIncomesCategory {
             this.createCategoryInputElement.classList.add('is-invalid'); 
             isValid = false;
         }
-
+        return isValid
     }
 
     async createIncomeCategory() {
         if (this.validateForm) {
-            console.log(this.createCategoryInputElement.value);
             let result = await HttpUtils.request('categories/income', 'POST', true, {
                 title: this.createCategoryInputElement.value,
 

@@ -30,11 +30,9 @@ export class AuthUtils {
     }
 
     static async updateRefreshToken() {
-        console.log('try to refresh')
         const refreshToken = this.getAuthInfo('refreshToken');
             
         if (!refreshToken) {
-            console.log('No refresh token found');
             return false;
         }
         let result = false;
@@ -54,7 +52,6 @@ export class AuthUtils {
                 if (tokens && !tokens.error) {
                     this.setAuthInfo('accessToken', tokens.accessToken);
                     this.setAuthInfo('refreshToken', tokens.refreshToken);
-                    console.log('in refresh - setting tokens', localStorage, tokens.accessToken, tokens.refreshToken)
                     result = true;
                 }
             } else {
@@ -66,7 +63,6 @@ export class AuthUtils {
 
         if (!result) {
             this.removeAuthInfo();
-            console.log('Tokens removed');
         }
 
     return result;

@@ -17,7 +17,6 @@ export class ListIncomesCategory {
 
     async init() {
         const data = await this.getIncomeCategories();
-        console.log(data, 'data in init');
         this.categoriesRender(data.response)
     }
     async getIncomeCategories() {
@@ -70,7 +69,6 @@ export class ListIncomesCategory {
 
     currentDeleteId = null;
     bindDeleteConfirm() {
-        console.log(this.deleteConfirmButton);
         this.deleteConfirmButton.addEventListener('click', async () => {
             if (!this.currentDeleteId) return;
 

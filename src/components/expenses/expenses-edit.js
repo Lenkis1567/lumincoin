@@ -20,7 +20,6 @@ export class EditExpensesCategory {
 
         async init() {
             const categoryName = await this.getCategoryName(this.id); // ✅ await the async call
-            console.log(categoryName, 'categoryName in init');
             if (categoryName) {
                 this.createCategoryInputElement.value = categoryName;
             }
@@ -49,7 +48,6 @@ export class EditExpensesCategory {
 
     async editExpenceCategory() {
         if (this.validateForm()) {
-            console.log(this.id, 'id in edit');
 
             let result = await HttpUtils.request('categories/expense/'+this.id , 'PUT', true, {
                 title: this.createCategoryInputElement.value,

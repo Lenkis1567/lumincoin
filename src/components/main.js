@@ -165,7 +165,7 @@ export class Main {
                 }
 
             const operations = await this.getOperations(startDate, endDate);
-            console.log(operations, 'in render');
+            (operations, 'in render');
             this.processAndRenderCharts(operations);
             });
         });

@@ -69,7 +69,6 @@ export class CreateIncomeExpense {
         }
 
         if (this.selectCategoryElement.value) {
-            console.log('category_id:', this.selectCategoryElement.value);
             this.selectCategoryElement.classList.remove('is-invalid'); 
         } else {
             this.selectCategoryElement.classList.add('is-invalid'); 
@@ -83,7 +82,7 @@ export class CreateIncomeExpense {
             isValid = false;
         }
 
-        if (this.inputAmountElement.value) {
+        if (this.inputAmountElement.value&&this.inputAmountElement.value>=0) {
             this.inputAmountElement.classList.remove('is-invalid'); 
         } else {
             this.inputAmountElement.classList.add('is-invalid'); 
@@ -136,7 +135,6 @@ export class CreateIncomeExpense {
                 comment: this.inputCommentElement.value,
                 category_id: Number(this.selectCategoryElement.value)
              };
-            console.log(body);
             let result = await HttpUtils.request('operations', 'POST', true, body);
             if (result.error ||!result.response){
                 alert("can't create new line")

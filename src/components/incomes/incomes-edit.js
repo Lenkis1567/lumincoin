@@ -49,7 +49,6 @@ export class EditIncomesCategory {
 
     async editIncomeCategory() {
         if (this.validateForm()) {
-            console.log(this.id, 'id in edit');
 
             let result = await HttpUtils.request('categories/income/'+this.id , 'PUT', true, {
                 title: this.createCategoryInputElement.value,

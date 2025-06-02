@@ -18,7 +18,6 @@ export class HttpUtils {
 
         if (useAuth){
             accessToken = AuthUtils.getAuthInfo('accessToken');
-            console.log(accessToken, 'accessToken in useauth')
             if (accessToken) {
                 params.headers['x-auth-token'] = accessToken;
             }  
@@ -40,7 +39,6 @@ export class HttpUtils {
         if (response.status < 200 || response.status >= 300) {
             result.error = true;
         if (useAuth && response.status === 401) {
-            console.log('useAuth && response.status === 401', accessToken)
             if (!accessToken) {
                 result.redirect = 'login';
             } else {
@@ -54,7 +52,6 @@ export class HttpUtils {
             }
         }
         }
-        console.log(result, 'result in utils')
         return result
     }
 }

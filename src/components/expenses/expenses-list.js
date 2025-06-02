@@ -18,7 +18,6 @@ export class ListExpensesCategory {
 
     async init() {
         const data = await this.getExpenseCategories();
-        console.log(data, 'data in init');
         this.categoriesRender(data.response)
     }
     async getExpenseCategories() {

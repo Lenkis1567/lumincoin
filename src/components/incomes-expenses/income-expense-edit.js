@@ -33,7 +33,6 @@ export class EditIncomeExpense {
         if (!result||result.error||!result.response||!result.response.id|| !result.response.amount ||!result.response.type ||!result.response.category ||!result.response.date) {
                 return 
             } else {
-                console.log(result.response)
                 return result.response  
             }
     }
@@ -128,7 +127,7 @@ export class EditIncomeExpense {
             isValid = false;
         }
 
-        if (this.inputAmountElement.value) {
+        if (this.inputAmountElement.value&&this.inputAmountElement.value>=0) {
             this.inputAmountElement.classList.remove('is-invalid'); 
         } else {
             this.inputAmountElement.classList.add('is-invalid'); 
@@ -169,7 +168,6 @@ export class EditIncomeExpense {
     async editFinance(e) {
          e.preventDefault();
         if (this.validateForm()) {
-            console.log('send is ready');
             
             const body= {
                 type: this.selectTypeElement.value,
@@ -179,8 +177,6 @@ export class EditIncomeExpense {
                 category_id: Number(this.selectCategoryElement.value)
              };
 
-            console.log('amount:', body.amount, 'typeof:', typeof body.amount);
-console.log('category_id:', body.category_id, 'typeof:', typeof body.category_id);
             let result = await HttpUtils.request('operations/'+this.id, 'PUT', true, body);
             if (result.error ||!result.response){
                 alert("can't create new line")
