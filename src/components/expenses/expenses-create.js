@@ -26,7 +26,7 @@ export class CreateExpensesCategory {
     }
 
     async createExpenceCategory() {
-        if (this.validateForm) {
+        if (this.validateForm()) {
             let result = await HttpUtils.request('categories/expense', 'POST', true, {
                 title: this.createCategoryInputElement.value,
 

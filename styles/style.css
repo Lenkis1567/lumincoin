@@ -439,3 +439,11 @@ body {
 .date-input-container {
   flex-direction: row; 
   align-items: center}
+
+
+.dropdown-menu {
+  top: auto !important;
+  left: auto !important;
+  inset: auto !important;
+  transform: none !important;
+}
