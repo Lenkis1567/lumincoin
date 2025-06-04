@@ -9,6 +9,7 @@ export class Main {
         } 
         this.incomeChart = null;
         this.expenseChart = null;
+        this.paginationDates = document.querySelector('.pagination-dates');
         this.yearBtn = document.querySelector('[data-range="year"]');
         this.allBtn = document.querySelector('[data-range="all"]');
         this.startDateElement = document.getElementById('start-date');
@@ -121,7 +122,7 @@ export class Main {
 
     bindEvents() {
         document.querySelectorAll('.btn-pagination').forEach(button => {
-            button.addEventListener('click', async () => {
+            button.addEventListener('click', () => {
                 const range = button.dataset.range;
 
                 this.clearValidation(this.startDateElement, 'start-dateFeedback');
@@ -129,13 +130,30 @@ export class Main {
                 document.querySelectorAll('.btn-pagination').forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
 
-                let startDate, endDate;
+            if (range === 'interval') {
+                const isVisible = window.getComputedStyle(this.paginationDates).display !== 'none';
+                console.log('Interval clicked. Currently visible:', isVisible);
+
+                if (isVisible) {
+                    this.paginationDates.style.display = 'none';
+                    button.classList.remove('active');
+                } else {
+                    
+                    this.paginationDates.style.display = 'flex';
+                    button.classList.add('active');
+                }
+
+                return; 
+                this.paginationDates.style.display = 'none'; 
+            }
+
                 const today = new Date();
                 const todayStr = today.toISOString().split('T')[0];
+                let startDate, endDate;
 
                 if (range === 'today') {
                     startDate = endDate = todayStr;
-                }  else if (range === 'week') {
+                } else if (range === 'week') {
                     const weekAgo = new Date(today);
                     weekAgo.setDate(today.getDate() - 7);
                     startDate = weekAgo.toISOString().split('T')[0];
@@ -151,26 +169,32 @@ export class Main {
                 } else if (range === 'all') {
                     startDate = '1900-01-01';
                     endDate = todayStr;
-                } else if (range==='interval')  {
+                }
+
+                this.fetchAndRender(startDate, endDate);
+            });
+        });
+
+        [this.startDateElement, this.endDateElement].forEach(input => {
+            input.addEventListener('keydown', async (event) => {
+                if (event.key === 'Enter') {
                     const isStartValid = this.validateDate(this.startDateElement, 'start-dateFeedback');
                     const isEndValid = this.validateDate(this.endDateElement, 'end-dateFeedback');
 
                     if (isStartValid && isEndValid) {
-                        startDate = this.startDateElement.value;
-                        endDate = this.endDateElement.value;
-                    } else {
-                        return; // Don't continue if dates are invalid
+                        const startDate = this.startDateElement.value;
+                        const endDate = this.endDateElement.value;
+                        await this.fetchAndRender(startDate, endDate);
                     }
-                    
                 }
-
-            const operations = await this.getOperations(startDate, endDate);
-            (operations, 'in render');
-            this.processAndRenderCharts(operations);
             });
         });
     }
 
+    async fetchAndRender(startDate, endDate) {
+        const operations = await this.getOperations(startDate, endDate);
+        this.processAndRenderCharts(operations);
+    }
     validateDate(inputElement, feedbackId) {
         const dateStr = inputElement.value;
         const regex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;

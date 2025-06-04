@@ -447,3 +447,7 @@ body {
   inset: auto !important;
   transform: none !important;
 }
+
+.pagination-dates {
+  display: none
+}
