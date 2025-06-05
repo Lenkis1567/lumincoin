@@ -180,7 +180,6 @@ export class Router {
 
             if (result&&result.response) {
                  const balance = result.response.balance;
-                   console.log(result.response, 'balance res');
                 if (balance){
                     this.balanceElement.innerText = balance+'$'
                 }

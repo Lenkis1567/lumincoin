@@ -1,4 +1,5 @@
 import {AuthUtils} from "../../utils/auth-utils";
+import {HttpUtils} from "../../utils/http-utils";
 
 export class CreateExpensesCategory {
     constructor() {
@@ -6,7 +7,35 @@ export class CreateExpensesCategory {
         if (!authInfo.accessToken){
             window.location.href = 'login'; 
         } 
-        console.log('expenses create')
 
+        this.createCategoryButton = document.getElementById('expenses-category-create-button');
+        this.createCategoryInputElement = document.getElementById('expenses-category-name')
+        this.createCategoryButton.addEventListener('click', this.createExpenceCategory.bind(this));
+    }
+
+    validateForm() {
+        let isValid = true;
+        if (this.createCategoryInputElement.value) {
+            
+            this.createCategoryInputElement.classList.remove('is-invalid'); 
+        } else {
+            this.createCategoryInputElement.classList.add('is-invalid'); 
+            isValid = false;
+        }
+        return isValid
+    }
+
+    async createExpenceCategory() {
+        if (this.validateForm()) {
+            let result = await HttpUtils.request('categories/expense', 'POST', true, {
+                title: this.createCategoryInputElement.value,
+
+             });
+            if (result.error ||!result.response){
+                alert("Can't create category, check the existing")
+            } else {
+                window.location.href='expenses-list'
+            }
+        }
     }
 }

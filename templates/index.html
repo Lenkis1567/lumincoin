@@ -1,17 +1,34 @@
 
         <div class="content-container" id="main">
             <h1 class="main-title" id="main-title">Главная</h1>
-            <div class="day-nav d-flex align-items-center">
-                <button class="btn btn-outline-secondary btn-pagination me-3" id="today"> Сегодня</button>
-                <button class="btn btn-outline-secondary btn-pagination me-3" id="week"> Неделя</button>
-                <button class="btn btn-outline-secondary btn-pagination me-3" id="month"> Месяц</button>
-                <button class="btn btn-outline-secondary btn-pagination me-3" id="year"> Год</button>
-                <button class="btn btn-outline-secondary btn-pagination me-3" id="all"> Все</button>
-                <button class="btn btn-outline-secondary btn-pagination me-3" id="interval"> Интервал</button>
-                <div class="pagination-dates d-flex align-items-center">
-                    С <btn class="btn btn-link" id="start-date-pagination"> Дата</btn> по <btn class="btn btn-link" id="finish-date-pagination"> Дата</btn>
+            <div class="day-nav d-flex align-items-center day-nav-expences-incomes">
+            <btn class="btn btn-outline-secondary btn-pagination me-3" data-range="today"> Сегодня</btn>
+            <btn class="btn btn-outline-secondary btn-pagination me-3" data-range="week"> Неделя</btn>
+            <btn class="btn btn-outline-secondary btn-pagination me-3" data-range="month"> Месяц</btn>
+            <btn class="btn btn-outline-secondary btn-pagination me-3" data-range="year"> Год</btn>
+            <btn class="btn btn-outline-secondary btn-pagination me-3" data-range="all"> Все</btn>
+            <btn class="btn btn-outline-secondary btn-pagination me-3" data-range="interval"> Интервал</btn>
+            <div class="pagination-dates align-items-center">
+              <div class="d-flex dates-input-container"> 
+                <div class="d-flex date-input-container"> 
+                  <label for="start-date" class="form-label mb-0">С</label>
+                  <input type="text" id="start-date" class="form-control form-control-sm date-input ms-1" placeholder="Дата">
                 </div>
+                <div id="start-dateFeedback" class="invalid-feedback text-start ms-3">
+                  YYYY-MM-DD
+                </div>
+              </div>
+              <div class="d-flex dates-input-container ms-2"> 
+                <div class="d-flex date-input-container">
+                  <label for="end-date" class="form-label mb-0">по</label>
+                  <input type="text" id="end-date" class="form-control form-control-sm date-input ms-3" placeholder="Дата">
+                </div>
+                <div id="end-dateFeedback" class="invalid-feedback text-start ms-5">
+                  YYYY-MM-DD
+                </div>
+              </div>
             </div>
+        </div>
             <div class="row justify-content-center">
                 <div class="col-auto">
                     <div class="chart-container">
@@ -31,108 +48,5 @@
                     </div>
                 </div>
             </div>
-        
         </div>
 
-      <script>
-        var ich = document.getElementById('incomeChart').getContext('2d');
-        new Chart(ich, {
-          type: 'pie',
-          data: {
-            labels: ['Депозиты', 'Инвестиции', 'Зарплата', 'Сбережения', 'Orange'],
-            datasets: [{
-              label: 'Colors Distribution',
-              data: [20, 13, 25, 12, 40],
-              backgroundColor: ['#DC3545', '#0D6EFD', '#FFC107', '#20C997', '#FD7E14']
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                position: 'top',
-                labels: {
-                    boxWidth: 20,  
-                    padding: 15,
-                    font: {
-                        size: 14
-                    }
-                }
-              },
-                title: {
-                    display: true,
-                    text: 'Доходы',
-                    font: {
-                        size: 28
-                    }
-                },
-
-            }
-          }
-        });
-        </script>
-        <script>
-            var och = document.getElementById('outcomeChart').getContext('2d');
-            new Chart(och, {
-            type: 'pie',
-            data: {
-                labels: ['Еда', 'Жилье', 'Здоровье', 'Машина', 'Orange'],
-                datasets: [{
-                label: 'Colors Distribution',
-                data: [10, 20, 30, 20, 10],
-                backgroundColor: ['#DC3545', '#0D6EFD', '#FFC107', '#20C997', '#FD7E14']
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                legend: {
-                    position: 'top',
-                    labels: {
-                        boxWidth: 20,  
-                        padding: 15,
-                        font: {
-                            size: 14
-                        }
-                    }
-                },
-                    title: {
-                        display: true,
-                        text: 'Расходы',
-                        font: {
-                            size: 28
-                        }
-                    },
-
-                }
-            }
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          const toggleBtn = document.getElementById('sidebarToggle');
-          const toolbar = document.querySelector('.toolbar');
-      
-          toggleBtn.addEventListener('click', function () {
-            toolbar.classList.toggle('show');
-          });
-
-        const closeBtn = document.getElementById('sidebarClose');
-        closeBtn.addEventListener('click', function () {
-        toolbar.classList.remove('show');
-
-        });
-    })
-      </script>
-      <script>
-        document.querySelectorAll('.nav-item.dropdown').forEach(item => {
-            item.addEventListener('show.bs.dropdown', () => {
-                item.querySelector('svg').style.transform = 'rotate(90deg)';
-            });
-            item.addEventListener('hide.bs.dropdown', () => {
-                item.querySelector('svg').style.transform = 'rotate(0deg)';
-            });
-            });
-      </script>
-</body>
-</html>

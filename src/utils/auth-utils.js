@@ -29,33 +29,42 @@ export class AuthUtils {
 
     }
 
-     static async updateRefreshToken() {
-        let result = false;
+    static async updateRefreshToken() {
         const refreshToken = this.getAuthInfo('refreshToken');
-        console.log(refreshToken, 'refresh')
-        if (refreshToken) {
+            
+        if (!refreshToken) {
+            return false;
+        }
+        let result = false;
 
-         const response = await fetch(config.api +'refresh', {
+        try {
+            const response = await fetch(config.api + 'refresh', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
-                    'Accept': 'application/json', 
-                    },
-                    body: JSON.stringify({'refreshToken': refreshToken})
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ 'refreshToken': refreshToken })
             });
-            if (response&&response.status ===200) {
+
+            if (response.ok) {
                 const tokens = await response.json();
-                if (tokens && !tokens.error){
-                    this.setAuthInfo('accessToken', tokens.accessToken);    
+                if (tokens && !tokens.error) {
+                    this.setAuthInfo('accessToken', tokens.accessToken);
                     this.setAuthInfo('refreshToken', tokens.refreshToken);
                     result = true;
                 }
+            } else {
+                console.warn('Refresh failed with status', response.status);
             }
+        } catch (error) {
+            console.error('Refresh token error:', error);
         }
+
         if (!result) {
-            this.removeAuthInfo()
-            console.log('remove')
+            this.removeAuthInfo();
         }
-        return result
+
+    return result;
     }
 }
